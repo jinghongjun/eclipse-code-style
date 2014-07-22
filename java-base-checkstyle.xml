@@ -113,7 +113,182 @@
 			<property name="tokens" value="METHOD_DEF"/>
 	 	</module>
 
+		<!-- 空格检查 -->
+		<!-- 方法名与左边括号之间空格 -->
+		<module name="MethodParamPad"/>
 
+		<!-- 圆括号附近的空格 -->
+		<module name="ParenPad"/>
+
+		<!-- 类型转换中圆括号附近的空格  -->
+		<module name="TypecastParenPad"/>
+
+ 		<!-- 对TAB的检查 -->
+		<module name="TabCharacter">
+
+		<!-- 特定符号后的空格: COMMA-, SEMI-; TYPECAST-（） -->
+		<module name="WhitespaceAfter">
+			<property name="tokens" value="COMMA, SEMI, TYPECAST"/>
+		</module>
+
+		<!-- 关键字 -->
+		<!-- 关键字出现顺序  public static final XXX -->
+		<module name="ModifierOrder"/>
+
+	    	<!-- 多余的关键字 -->
+		<module name="">
+			<property name="tokens" value="METHOD_DEF,VARIABLE_DEF, ANNOTATION_FIFLE_DEF"/>
+		</module>
+
+		<!-- 对区域（empty block）的检查-->
+		<!-- 空白区域：只要是{}包含起来的区域 -->
+		<module name="EmptyBlock"/>
+
+		<!-- 对左侧括号{的检查-->
+
+		<!-- 需要括号的区域 -->
+		<module name="NeedBraces">
+			<property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_IF, LITERAL_FOR, LITERAL_WHILE"/>
+		</module>
+
+		<!-- 对右括号}的检查 -->
+		<module name="AvoidNestedBlocks">
+			<property name="allowInSwitchCase" value="true"/>
+		</module>
+
+		<!-- 编码的检查 -->
+		<!-- 数组尾巴的逗号 -->
+		<module name="ArrayTrailingComma"/>
+	
+		<!-- 避免内联条件判断: 三目运算-->
+		<module name="AvoidInlineConditionals"/>
+
+		<!-- override的equals方法 -->
+		<module name="CovariantEquals"/>
+
+		<!-- 空语句 -->		
+		<module name="EmptyStatement"/>
+
+		<!-- 检查一个类是否override了equals和hashCode方法 -->
+		<module name="EqualsHashCode"/>
+
+		
+		<!-- 应该声明成final的局部变量 -->
+		<module name="FinalLocalVariable"/>
+
+		<!-- 不合适的初始化： 规定不能通过new来构造java.lang.Boolean对象 -->
+		<module name="IllegalInstantiation">
+			<property name="classes" value="java.lang.Boolean"/>
+		</module>
+
+		<!-- 不合适的token： 检查java中不使用switch, c++/c- -->
+		<module name="IllegalToken"/>
+
+		<!-- 内部赋值语句 例如：Integer.toString(i = 2)-->
+		<module name="InnerAssignment"/>
+
+		<!-- 魔法数： 没有含义的常量赋值 -->
+		<module name="MagicNumber">
+			<property name="tokens" value="NUMBER_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG"/>
+			<!-- 忽略的数字-->
+			<property name="ignoreNumber" value="0, 0.05"/>		
+		</module>
+
+		<!-- 丢了default分支的switch -->
+		<module name="MissingSwitchDefault"/>
+
+		<!-- 被更改的循环控制变量 -->
+		<module name="ModifiedControlVariable"/>
+
+		<!-- 多余的throw -->
+		<module name="RedundantThrows"/>
+
+		<!-- 如果允许unchecked exception -->
+		<module name="RedundantThrows">
+		 	<property name="allowUnchecked" value="true"/>
+		</module>
+		
+		<!-- 未被简化的条件表达式 -->
+		<module name="SimplifyBooleanReturn"/>
+
+		<!-- 字符串的比较 -->
+		<module name="StringLiteralEquality"/>
+
+		<!-- 嵌套的if层次 -->
+		<module name="NestedIfDepth">
+			<property name="max" value="3"/>
+		</module>
+
+		<!-- 嵌套的try层次 -->
+		<module name="NestedTryDepth">
+			<property name="max" value="3"/>
+		</module>
+
+		<!-- 调用父类的clone -->
+		<module name="superClone"/>
+
+		<!-- 父类的finalize -->
+		<module name="superFinalize"/>
+
+		<!-- 不合理的catch -->
+		<module name="IllegalCatch"/>
+
+		<!-- 不合理的throws -->
+		<module name="IllegalThrows"/>
+
+		<!-- package声明 -->
+		<module name="PackageDeclaration"/>
+
+		<!-- JUnitTestCase -->
+		<module name="JUnitTestCase"/>
+
+		<!-- return语句的数量 -->
+		<module name="ReturnCount">
+			<property name="max" value="3"/>
+			<property name="format" value="^$"/>
+		</module>
+
+		<!-- 声明的顺序: class, 变量，构造函数，方法-->
+		<module name="DeclarationOrder"/>
+		
+		<!-- 参数被赋值 -->
+		<module name="ParameterAssignment"/>	
+
+		<!-- 详尽的变量初始化 -->
+		<module name="ExplicitInitializtion"/>
+
+		<!-- switch语句default位置排在最后 -->
+		<module name="DefaultComesLast"/>
+
+		<!-- 丢失构造函数-->
+		<module name="MissingCtor"/>
+
+		<!-- switch中错误分支：检查某个case中是否有break,return, throw或continue -->		
+		<module name="FallThrough"/>
+
+		<!-- 多个内容相同的字符串变量 -->
+		<module name="MultipleStringLiterals">
+			<!-- 最多重复两次检查-->
+			<property name="allowedDuplicates" value="2"/>
+			<!-- 忽略逗号和空格的检查-->
+			<property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
+		</module>
+
+		<!-- 同一行禁止声明多个变量 -->
+		<module name="MultipleVariableDeclarations"/>
+
+		<!-- 不使用this -->
+		<module name="RequireThis">
+			<!-- 只检查变量，不检查方法-->
+			<property name="checkMethods" value="false"/>
+			<property name="checkFields" value="false"/>
+		</module>
+
+		<!-- 不必要的圆括号 -->
+		<module name="UnnecessaryParentheses"/>
+
+		<!-- Class 设计 P42-->
+	
         </module>
 
 
