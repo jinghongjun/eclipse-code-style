@@ -4,6 +4,29 @@
 <module name="Checker">
 	<property name="severity" value="warning"/>
 
+
+	<module name="Checker">
+	        <!-- 重复代码: 重复代码检查可以让你找到经过copy/past出来的代码，重复代码的典型缺点是增加维护代价-->
+		<module name="StrictDuplicateCode">
+			<property name="min" value="15"/>
+			<property name="charset" value="UTF-8"/>
+		</module>
+
+		<!-- 文件结尾的回车 -->
+		<module name="NewlineAtEndOfFile">
+			<!-- 使用linux风格的换行符-->
+			<property name="lineSeparator" value="1f"/>
+			<!-- 只检查java,xml或python文件 -->
+			<property name="fileExtensions" value="java, xml, py"/>
+		</module>
+
+		<!-- 翻译属性文件 -->
+		<module name="Translation">
+			<!-- 翻译文件的扩展名是zh-CN, jp -->
+			<property name="fileExtensions" value="zh-CN, jp"/>
+		</module>
+	</module>
+
         <!-- 以下节点是配置检查代码位置规则-->
 	<module name="TreeWalker">
 
@@ -287,8 +310,108 @@
 		<!-- 不必要的圆括号 -->
 		<module name="UnnecessaryParentheses"/>
 
-		<!-- Class 设计 P42-->
+		<!-- Class 设计 -->
+		<!--可见的修改方法 -->
+		<module name ="VisibilityModifier">
+			<!-- 允许包可见成员的检查-->
+			<property name="packageAllowed" value="true"/>
+			<!-- 不允许公共成员的检查-->
+			<property name="publicMemberPattern" value="^$"/>
+		</module>
+
+		<!-- Final class: 确保只有private 构造函数的class声明成final -->
+		<module name="FinalClass"/>
+
+		<!-- Interfacels Type: 检查接口不包含方法和常量的类 -->
+		<module name="InterfaceIsType"/>
+
+		<!-- 隐藏工具类的构造方法 -->
+		<module name="HideUtilityClassConstructor"/>
+
+		<!-- 方便继承而进行设计 -->
+		<module name="DesignForExtension"/>
+
+		<!-- 各种量度 -->
+		<!-- 布尔表达式的复杂度 -->
+		<module name="">
+			<!-- 最多允许7个操作符 -->
+			<property name="max" value="7"/>
+		</module>
+
+		<!-- 类数据的抽象耦合: 一个类中如果使用太多其他类，肯定会增加系统的复杂度 -->
+		<module name="ClassDataAbstractionCoupling">
+			<property name="max" value="5"/>
+		</module>
 	
+		<!-- 类的分散复杂度: 一个类依靠的其他类的个数，这个数字的平方也会被显示出来 ，以表示最少需要的修改个数 -->
+		<module name="ClassFanOutComplexity">
+			<property name="max" value="10"/>
+		</module>
+
+		<!-- 函数的分支复杂度: 确保函数的分支复杂度没有超出限制，该复杂度是通过考察大部分函数（构造函数，一般方法，静态初始函数，实例初始函数）中的if,while,do,for,?:,catch,switch,case和&&,||等操作符的数目来计算得到。一般而言1-4是优秀，5-7是合格，8-10看情况重构 -->
+		<module name="CyclomaticComplexity">
+			<property name="max" value="7"/>
+		</module>		
+
+		<!-- Npath复杂度 -->
+		<module name="NPathComplexity">
+			<property name="max" value="40"/>
+		</module>
+
+		<!-- 杂项 -->	
+		<!-- 禁止使用的表达式 -->
+		<module name="GenericIllegalRegexp">
+			<!-- 进制代码中使用System.out.println的检查 -->
+			<property name="format" value="System\.out\.println"/>
+			<!-- 是否忽略大小写 -->
+			<property name="ignoreCase" value="true"/>
+			<!-- 是否忽略注释 -->
+			<property name="ignoreComments" value="true"/>
+			<!-- 检查到错误时显示的信息 -->
+			<property name="message" value="使用到禁止的代码"/>
+		</module>
+
+		<!-- Todo注释 -->
+		<module name="TodoComment">
+			<!-- 指定了被检查的字符串内容 -->
+			<property name="format" value="WARNING"/>
+		</module>
+
+		<!--没有被注释掉的Main函数 -->
+		<module name="uncommentedMain">
+			<!-- 不检查某个类： 不检查以Main结尾的类 -->
+			<property name="excludedClasses" value="^Main$"/>
+		</module>
+
+		<!-- 大写的L： 检查所有常量的L都是大写 -->
+		<module name="UpperEll"/>
+
+		<!-- 声明数组的风格 -->
+		<module name="ArrayTypeStyle">
+			<!-- 检查是否使用了C风格 -->
+			<property name="javaStyle" value="false"/>
+		</module>
+
+		<!-- final型的参数-->
+		<module name="FinalParameters"/>
+		
+		<!-- 缩进：tab在不同的文本编辑器下的缩进不同，最好使用空格 -->
+		<module name="Indentation"/>
+		
+		<!-- 与代码同行的注释: 确保每个注释都是单独的一行 -->
+		<module name="TrailingComment">
+			<!-- 严格检查//注释都占一行 -->
+			<property name="format" value="^\\s*$"/>
+		</module>		
+
+		<!-- 必须出现的字符串 -->
+		<module name="RequiredRegexp">
+			<!-- 指定了被检查的字符串内容 -->
+			<property name="format" value="this code is copyright"/>
+		</module>		
+
+		
+
         </module>
 
 
